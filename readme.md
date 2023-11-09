@@ -26,10 +26,12 @@ use NOME_DATABASE;
 ## Criar tabela de usuários
 ```
 create table usuarios(
-    id in not null auto_autoincrement, 
+    id int not null auto_increment, 
     nome varchar(120) not null, 
     email varchar(120) not null, 
-    senha varchar(120) not null));
+    senha varchar(120) not null,
+    primary key(id)
+);
 ```
 * id: identificador de cada registro
 * not null: campo obrigatório
@@ -39,9 +41,9 @@ create table usuarios(
 ### Criar tabela de produtos
 ```
 create table produtos(
-    id in not null auto_autoincrement, 
+    id int not null auto_increment, 
     modelo varchar(120), 
-    nome varchar(120) not null;
+    nome varchar(120) not null,
     valor float not null,
     primary key (id)
 );
@@ -50,12 +52,12 @@ create table produtos(
 ### Criar tabela de carrinho
 ```
 create table carrinho(
-    id in not null auto_autoincrement, 
+    id int not null auto_increment, 
     id_usuario int not null, 
-    id_produto int not null
-    primary key(id)
-    foreign key(id_usuario) references usuarios (id),
-    foreign key(id_produto) references produto (id)
+    id_produto int not null,
+    primary key(id),
+    foreign key(id_usuario) references usuarios(id),
+    foreign key(id_produto) references produtos(id)
 );
 ```
 
@@ -69,7 +71,7 @@ insert into usuarios(nome, email, senha) values('João', 'teste@gmail.com', 'sec
 
 ### Inserir produtos
 ```
-insert into produtos(modelo, nome, valor) values('nike', 'camiseta', 129,90);
+insert into produtos(modelo, nome, valor) values('nike', 'camiseta', 129.90);
 ```
 
 ### Inserir carrinho
